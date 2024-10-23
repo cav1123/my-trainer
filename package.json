@@ -2,11 +2,20 @@
   "name": "stretch-cooach",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://cav1123.github.io/my-trainer",
   "scripts": {
     "dev": "next dev",
+    "vercel-build": "prisma generate && next build" ,
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "predeploy": "npm run build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "rm": "rm -rf docs",
+    "mv": "mv build docs",
+    "git": "git add . && git commit && git push origin master",
+    "deploy": "npm run rm && npm run build && npm run mv && npm run git"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
