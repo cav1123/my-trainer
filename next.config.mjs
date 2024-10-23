@@ -15,6 +15,7 @@ const nextConfig = {
     serverActions: true,
   },
   reactStrictMode: false,
+  output: "export",
 };
 
 export default nextConfig;
