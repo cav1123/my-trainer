@@ -226,6 +226,7 @@ export default function Form({ prismaMenus }: FormProps) {
     <div className="flex gap-4 flex-col items-start">
       <Controllers start={start} stop={stop} isPlay={isPlay} />
       <Chips timeTotal={timeTotal} menusTotal={menusTotal} />
+      <button>test</button>
       <ul
         className="grid w-full gap-2"
         style={{ gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))" }}
