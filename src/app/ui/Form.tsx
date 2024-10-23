@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import useSound from "use-sound";
+// import useSound from "use-sound";
 import Countdown from "../../public/Countdown01-1.mp3";
 import Controllers from "./Controllers";
 import Chips from "./Chips";
@@ -158,17 +158,21 @@ export default function Form({ prismaMenus }: FormProps) {
     router.refresh();
   };
   // コントローラー
-  const [sound] = useSound(Countdown);
+  // const [sound] = useSound(Countdown);
+
   const [isPlay, setIsPlay] = useState(false);
   const [indexPlaying, setIndexPlaying] = useState(0);
   const [intervalMenu, setIntervalMenu] = useState(0);
   const filteredMenus = menus.filter((menu) => menu.isValid);
+
   // 再生
   useEffect(() => {
+    const audio = new Audio(Countdown);
     const setIntervalId = setInterval(() => {
       if (!isPlay) return;
       if (indexPlaying + 1 > filteredMenus.length) {
-        sound();
+        // sound();
+        audio.play().then();
         const speech = new SpeechSynthesisUtterance(
           "マイトレーナーを終了します、お疲れ様でした。"
         );
@@ -182,9 +186,10 @@ export default function Form({ prismaMenus }: FormProps) {
         const delay = title.length * 200;
         const time = filteredMenus[indexPlaying].time * 1000;
         const speech = new SpeechSynthesisUtterance(title);
-        sound();
+        // sound();
+        audio.play().then();
         setTimeout(() => window.speechSynthesis.speak(speech), 3000);
-        setTimeout(sound, delay + 3000);
+        setTimeout(() => audio.play().then(), delay + 3000);
         setIntervalMenu(time + delay);
         setIndexPlaying((indexPlaying) => indexPlaying + 1);
       }
@@ -192,7 +197,7 @@ export default function Form({ prismaMenus }: FormProps) {
     return () => {
       clearInterval(setIntervalId);
     };
-  }, [indexPlaying, intervalMenu, isPlay, filteredMenus, sound]);
+  }, [indexPlaying, intervalMenu, isPlay, filteredMenus]);
   // スタートボタン
   const start = () => {
     setIsPlay(true);
