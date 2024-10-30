@@ -11,9 +11,6 @@ const nextConfig = {
 
     return config;
   },
-  // experimental: {
-  //   serverActions: true,
-  // },
   reactStrictMode: false,
   output: "export",
 };
